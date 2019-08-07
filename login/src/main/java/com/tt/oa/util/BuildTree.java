@@ -10,15 +10,18 @@ public class BuildTree {
         //什么时候不迭代返回呢，就遍历到最底层时候的逻辑
         if (list == null)
             return null;
-
+        //当前深度的节点个数
+        int count = 0;
         //构建一个n叉树的节点
         List<TreeNode> resultList = new ArrayList<>();
         for (Map<String, List<String>> map : list) {
             for (String key : map.keySet()) {
                 //设置节点的key
                 TreeNode subNode = new TreeNode(key);
+                subNode.setCount(count++);
                 //设置节点的Property
                 subNode.setListValue(FileReaderTest.traverseProperty(key, map.get(key)).get(key));
+
                 subNode.setNext(buildTree(FileReaderTest.traverseRoot(map.get(key))));
 
                 resultList.add(subNode);
@@ -36,7 +39,9 @@ public class BuildTree {
             return "";
         for (TreeNode node : roots) {
             int tempDepth = depth;
-            stringBuilder.append("<p class=\"node\">");
+            //设置当前节点的深度
+            node.setDepth(depth + 1);
+            stringBuilder.append("<p class=\"node\" count=\"" + node.getCount() + "\" depth=\""+node.getDepth()+"\">");
             while (tempDepth != 0) {
                 for (int i = 0; i < 4 * tempDepth; i++)
                     stringBuilder.append("&nbsp");

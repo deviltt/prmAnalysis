@@ -12,6 +12,8 @@ public class TreeNode {
     private List<TreeNode> next;
     //用来后面输出到前端时打印空格时使用
     private int depth;
+    //是第几个节点
+    private int count;
 
     public TreeNode() {
     }
@@ -60,5 +62,13 @@ public class TreeNode {
 
     public void setDepth(int depth) {
         this.depth = depth;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
