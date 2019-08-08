@@ -101,8 +101,7 @@ public class TreeController {
         map.put("ifindex", "1");
         map.put("ifadminstatus", "down");
         int position = TraversAndCount.position;
-        System.out.println(position);
-        PartialModificationWithNIO.changeTxt(map, position, 1, 3, "ifentry");
+        PartialModificationWithNIO.changeTxt(map, position, 1, 3, "ifentry", root.getNext());
         return "redirect:toIndex";
     }
 }

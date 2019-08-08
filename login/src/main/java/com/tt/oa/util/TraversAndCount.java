@@ -15,9 +15,9 @@ import java.util.Set;
  */
 public class TraversAndCount {
     public static int position = 23;
-    private final int STARTTAG = 6; //开始标签[ MIB ]  \n\t
-    private final int ENDTAG = STARTTAG + 3; //结束标签 [end MIB] \n\t
-    private final int PROPERTY = 7; //属性的常量  = " " 一共是5个字符 再加上 \n\t
+    private final int STARTTAG = 6; //开始标签[ MIB ]  \r\n
+    private final int ENDTAG = STARTTAG + 3; //结束标签 [end MIB] \r\n
+    private final int PROPERTY = 7; //属性的常量  = " " 一共是5个字符 再加上 \r\n
     private boolean isFind = false;
 
     /**
