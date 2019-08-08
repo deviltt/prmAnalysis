@@ -4,6 +4,8 @@ import com.tt.oa.entity.TreeNode;
 import com.tt.oa.entity.Trie;
 import com.tt.oa.io.FileReaderTest;
 import com.tt.oa.util.BuildTrie;
+import com.tt.oa.util.PartialModificationWithNIO;
+import com.tt.oa.util.TraversAndCount;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.*;
 
-import static com.tt.oa.util.BuildTree.buildTree;
-import static com.tt.oa.util.BuildTree.doSearch;
-import static com.tt.oa.util.BuildTree.preOrderTraverse;
+import static com.tt.oa.util.BuildTree.*;
 import static com.tt.oa.util.BuildTrie.searchTrie;
 
 @Controller
@@ -33,7 +33,7 @@ public class TreeController {
     }
 
     @RequestMapping(value = "/build", method = RequestMethod.POST)
-    public String tree(@Param("uploadFile") MultipartFile uploadFile,HttpServletRequest request) throws IOException {
+    public String tree(@Param("uploadFile") MultipartFile uploadFile, HttpServletRequest request) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         List<Map<String, List<String>>> list = FileReaderTest.traverseRoot(FileReaderTest.getString(uploadFile.getInputStream()));
         //迭代构建n叉树
@@ -60,12 +60,13 @@ public class TreeController {
      * 如果查找的是属性节点，则返回属性节点，如果查找的是根节点
      */
     @RequestMapping("/search")
-    public String search(@Param("key") String key,HttpServletRequest request) {
+    public String search(@Param("key") String key, HttpServletRequest request) {
         List<TreeNode> list = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
         doSearch(root, key.toLowerCase(), list);
         request.getSession().setAttribute("list", list);
-        String content = preOrderTraverse(list, 0, stringBuilder);
+//        String content = preOrderTraverse(list, 0, stringBuilder);
+        String content = preOrderTraverseWithSubmit(list, 0, stringBuilder);
         //这里是放在session里面的，但可能文件太大了会影响性能
         request.getSession().setAttribute("content", content);
 
@@ -78,6 +79,7 @@ public class TreeController {
      * 只需要构建一次，然后拿到trie树的根节点即可!
      * 每输入一个单词，就把在Trie树中与input输入框中的字符串匹配的这一路都输出
      * 不用一路都输出，输出前10个即可
+     *
      * @param name name为你需要在trie树中查找的内容
      * @return
      */
@@ -89,5 +91,18 @@ public class TreeController {
         searchTrie(name, trie, map);
         //根据input实时输入的内容来遍历trie树，把符合条件的单词全部列出来，或者列出前几个
         return map;
+    }
+
+    @RequestMapping("/update")
+    public String updateAttribute() throws IOException {
+        TraversAndCount traversAndCount = new TraversAndCount();
+        traversAndCount.countPosition(1, "ifentry", root.getNext());
+        Map<String, String> map = new HashMap<>();
+        map.put("ifindex", "1");
+        map.put("ifadminstatus", "down");
+        int position = TraversAndCount.position;
+        System.out.println(position);
+        PartialModificationWithNIO.changeTxt(map, position, 1, 3, "ifentry");
+        return "redirect:toIndex";
     }
 }

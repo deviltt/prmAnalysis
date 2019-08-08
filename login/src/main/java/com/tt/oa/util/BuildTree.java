@@ -41,7 +41,7 @@ public class BuildTree {
             int tempDepth = depth;
             //设置当前节点的深度
             node.setDepth(depth + 1);
-            stringBuilder.append("<p class=\"node\" count=\"" + node.getCount() + "\" depth=\""+node.getDepth()+"\">");
+            stringBuilder.append("<p class=\"node\" count=\"" + node.getCount() + "\" depth=\"" + node.getDepth() + "\">");
             while (tempDepth != 0) {
                 for (int i = 0; i < 4 * tempDepth; i++)
                     stringBuilder.append("&nbsp");
@@ -70,6 +70,47 @@ public class BuildTree {
         return stringBuilder.toString();
     }
 
+
+    public static String preOrderTraverseWithSubmit(List<TreeNode> roots, int depth, StringBuilder stringBuilder) {
+        if (roots == null)
+            return "";
+        for (TreeNode node : roots) {
+            int tempDepth = depth;
+            //设置当前节点的深度
+            node.setDepth(depth + 1);
+            stringBuilder.append("<form action=\"update\" method=\"post\"/>");
+            stringBuilder.append("<p class=\"node\" count=\"" + node.getCount() + "\" depth=\"" + node.getDepth() + "\">");
+            while (tempDepth != 0) {
+                for (int i = 0; i < 4 * tempDepth; i++)
+                    stringBuilder.append("&nbsp");
+                --tempDepth;
+            }
+            stringBuilder.append(node.getKeyRoot());
+            stringBuilder.append("</p>");
+            if (node.getListValue() != null) {
+                //遍历属性map
+                for (String string : node.getListValue().keySet()) {
+                    tempDepth = depth + 1;
+                    stringBuilder.append("<p class=\"keyValue\">");
+                    while (tempDepth != 0) {
+                        for (int i = 0; i < 4 * tempDepth; i++)
+                            stringBuilder.append("&nbsp");
+                        --tempDepth;
+                    }
+                    stringBuilder.append(string);
+                    stringBuilder.append(" : <input name=\"");
+                    stringBuilder.append(string);
+                    stringBuilder.append("\" value=\"");
+                    stringBuilder.append(node.getListValue().get(string));
+                    stringBuilder.append("\"/></p>");
+                }
+            }
+            stringBuilder.append("<input type=\"submit\" value=\"修改\"/>");
+            stringBuilder.append("</form>");
+            preOrderTraverse(node.getNext(), depth + 1, stringBuilder);
+        }
+        return stringBuilder.toString();
+    }
 
     /**
      * 层序遍历进行查找，把所有符合条件的结果都保存起来

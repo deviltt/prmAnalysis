@@ -14,7 +14,7 @@ import java.util.Set;
  * 从而对配置文件进行修改
  */
 public class TraversAndCount {
-    public int position = 23;
+    public static int position = 23;
     private final int STARTTAG = 6; //开始标签[ MIB ]  \n\t
     private final int ENDTAG = STARTTAG + 3; //结束标签 [end MIB] \n\t
     private final int PROPERTY = 7; //属性的常量  = " " 一共是5个字符 再加上 \n\t
