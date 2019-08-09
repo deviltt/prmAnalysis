@@ -13,6 +13,7 @@ import java.util.Map;
 public class PartialModificationWithNIO {
     private static boolean isFind = false;
     private static TreeNode nodeFind;
+    private static TreeNode resultNode;
     private static Map<String, String> targetMap;
 
     /**
@@ -24,7 +25,7 @@ public class PartialModificationWithNIO {
      */
     public static void changeTxt(Map<String, String> map, int position, int count, int depth, String key, List<TreeNode> roots) throws IOException {
         //第一步首先要找到原来树中这个节点的位置
-        TreeNode resultNode = findThisKey(count, key, roots);
+        resultNode = findThisKey(count, key, roots);
         targetMap = resultNode.getListValue();
 
         File sourceFile = new File("D:\\prm\\login\\file\\hello1.txt");
@@ -38,30 +39,8 @@ public class PartialModificationWithNIO {
         StringBuilder stringBuilder1 = new StringBuilder();
 
         //知道节点，拼接由root和property组成的字符串
-        stringBuilder1 = splicingRootAndProperty(stringBuilder1, depth, roots);
-
-        for (int i = 0; i < 3 * depth; i++) {
-            stringBuilder.append(" ");
-        }
-        stringBuilder.append("[ ");
-        stringBuilder.append(resultNode.getKeyRoot());
-        stringBuilder.append(" ]\r\n");
-
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            for (int i = 0; i < 3 * (depth + 1); i++) {
-                stringBuilder.append(" ");
-            }
-            stringBuilder.append(entry.getKey());
-            stringBuilder.append(" = \"");
-            stringBuilder.append(entry.getValue());
-            stringBuilder.append("\"\r\n");
-        }
-        for (int i = 0; i < 3 * depth; i++) {
-            stringBuilder.append(" ");
-        }
-        stringBuilder.append("[end ");
-        stringBuilder.append(resultNode.getKeyRoot());
-        stringBuilder.append(" ]\r\n");
+        stringBuilder1 = splicingRootAndProperty(stringBuilder1, depth, resultNode.getListValue(), resultNode);
+        stringBuilder = splicingRootAndProperty(stringBuilder, depth, map, resultNode);
 
         int newPosition = position + stringBuilder1.toString().getBytes().length;
 
@@ -90,14 +69,14 @@ public class PartialModificationWithNIO {
         tempRA.close();
     }
 
-    private static StringBuilder splicingRootAndProperty(StringBuilder stringBuilder, int depth, List<TreeNode> roots) {
+    private static StringBuilder splicingRootAndProperty(StringBuilder stringBuilder, int depth, Map<String, String> map, TreeNode treeNode) {
         for (int i = 0; i < 3 * depth; i++) {
             stringBuilder.append(" ");
         }
         stringBuilder.append("[ ");
-        stringBuilder.append(nodeFind.getKeyRoot());
+        stringBuilder.append(resultNode.getKeyRoot());
         stringBuilder.append(" ]\r\n");
-        for (Map.Entry<String, String> entry : targetMap.entrySet()) {
+        for (Map.Entry<String, String> entry : map.entrySet()) {
             for (int i = 0; i < 3 * (depth + 1); i++) {
                 stringBuilder.append(" ");
             }
@@ -109,9 +88,12 @@ public class PartialModificationWithNIO {
         for (int i = 0; i < 3 * depth; i++) {
             stringBuilder.append(" ");
         }
-        stringBuilder.append("[end ");
-        stringBuilder.append(nodeFind.getKeyRoot());
-        stringBuilder.append(" ]\r\n");
+        //如果该节点没有子节点了，则添加end尾键标签
+        if (treeNode != null && treeNode.getNext() == null) {
+            stringBuilder.append("[end ");
+            stringBuilder.append(resultNode.getKeyRoot());
+            stringBuilder.append(" ]\r\n");
+        }
         return stringBuilder;
     }
 
