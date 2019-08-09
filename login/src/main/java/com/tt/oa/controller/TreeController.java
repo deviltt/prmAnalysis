@@ -96,12 +96,16 @@ public class TreeController {
     @RequestMapping("/update")
     public String updateAttribute() throws IOException {
         TraversAndCount traversAndCount = new TraversAndCount();
-        traversAndCount.countPosition(1, "ifentry", root.getNext());
-        Map<String, String> map = new HashMap<>();
-        map.put("ifindex", "1");
-        map.put("ifadminstatus", "down");
+        traversAndCount.countPosition(3, "snmp", root.getNext());
+        Map<String, String> map = new LinkedHashMap<>();
+
+//        map.put("IFIndex", "2");
+//        map.put("IFAdminStatus", "down");
+
+        map.put("snmpEnableAuthenTraps", "able");
+
         int position = TraversAndCount.position;
-        PartialModificationWithNIO.changeTxt(map, position, 1, 3, "ifentry", root.getNext());
+        PartialModificationWithNIO.changeTxt(map, position, 3, 1, "snmp", root.getNext());
         return "redirect:toIndex";
     }
 }
