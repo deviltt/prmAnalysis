@@ -71,8 +71,7 @@ public class BuildTree {
     }
 
     /**
-     *
-     * @param roots 存放TreeNode的集合
+     * @param roots         存放TreeNode的集合
      * @param depth
      * @param stringBuilder 只需要遍历到自己的Property即可
      * @return
@@ -80,38 +79,51 @@ public class BuildTree {
     public static String preOrderTraverseWithSubmit(List<TreeNode> roots, int depth, StringBuilder stringBuilder) {
         if (roots == null)
             return "";
-        for (TreeNode node : roots) {
+        for (int j = 0; j < roots.size(); j++) {
+            TreeNode node = roots.get(j);
             int tempDepth = depth;
             //设置当前节点的深度
-            node.setDepth(depth + 1);
-            stringBuilder.append("<form action=\"update\" method=\"post\"/>");
-            stringBuilder.append("<div class=\"node\" count=\"" + node.getCount() + "\" depth=\"" + node.getDepth() + "\">");
+//            node.setDepth(depth + 1);
+//            stringBuilder.append("<form action=\"update\" method=\"post\"/>");
+            stringBuilder.append("<form id=\"form");
+            stringBuilder.append(j);
+            stringBuilder.append("\">");
+            stringBuilder.append("<div><span class=\"node\" count=\"");
+            stringBuilder.append(node.getCount());
+            stringBuilder.append("\" depth=\"");
+            stringBuilder.append(node.getDepth());
+            stringBuilder.append("\">");
             while (tempDepth != 0) {
                 for (int i = 0; i < 4 * tempDepth; i++)
                     stringBuilder.append("&nbsp");
                 --tempDepth;
             }
             stringBuilder.append(node.getKeyRoot());
-            stringBuilder.append("</div>");
+            stringBuilder.append("</span></div>");
             if (node.getListValue() != null) {
                 //遍历属性map
                 for (String string : node.getListValue().keySet()) {
                     tempDepth = depth + 1;
                     stringBuilder.append("<div class=\"keyValue\">");
+                    stringBuilder.append("<span>");
                     while (tempDepth != 0) {
                         for (int i = 0; i < 4 * tempDepth; i++)
                             stringBuilder.append("&nbsp");
                         --tempDepth;
                     }
                     stringBuilder.append(string);
-                    stringBuilder.append(" : <input name=\"");
+                    stringBuilder.append("&nbsp:&nbsp</span>");
+                    stringBuilder.append("<input name=\"");
                     stringBuilder.append(string);
                     stringBuilder.append("\" value=\"");
                     stringBuilder.append(node.getListValue().get(string));
                     stringBuilder.append("\"/></div>");
                 }
             }
-            stringBuilder.append("<button type=\"submit\" value=\"update\">修改</button>");
+            stringBuilder.append("<button type=\"button\" value=\"update\" onclick=\"clickFunction(");
+            stringBuilder.append(j);
+            stringBuilder.append(")\">");
+            stringBuilder.append("修改</button>");
             stringBuilder.append("</form>");
 //            preOrderTraverse(node.getNext(), depth + 1, stringBuilder);
         }
@@ -136,7 +148,7 @@ public class BuildTree {
             if (tempList != null) {
                 for (TreeNode treeNode : tempList) {
                     //如果root的值等于key，需要观察这个root是否有属性property
-                    if (key.equals(treeNode.getKeyRoot().toLowerCase())&&treeNode.getListValue()!=null) {
+                    if (key.equals(treeNode.getKeyRoot().toLowerCase()) && treeNode.getListValue() != null) {
                         list.add(treeNode);
                         canReturn = true;
                     }

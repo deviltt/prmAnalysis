@@ -8,6 +8,7 @@ import com.tt.oa.util.PartialModificationWithNIO;
 import com.tt.oa.util.TraversAndCount;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -94,18 +95,41 @@ public class TreeController {
         return map;
     }
 
+    /**
+     * update方法需要知道的参数
+     * 1.修改的key
+     * 2.修改的是第几个key（因为可能有好几个相同的key
+     * 3.key对应的property键值对
+     * 4.当前节点的深度
+     *
+     * @return
+     * @throws IOException
+     */
     @RequestMapping("/update")
-    public String updateAttribute() throws IOException {
+    @ResponseBody
+    public Map<String, String> updateAttribute(@RequestBody Map<String, String> map) throws IOException {
+        System.out.println(map);
         //计算位置
         TraversAndCount traversAndCount = new TraversAndCount(23);
-
-        traversAndCount.countPosition(7, "tdmaparmsnetworkdataslotlenentry", root.getNext());
-        Map<String, String> map = new LinkedHashMap<>();    //LinkedHashMap按照插入的顺序排列
-        map.put("TDMAPARMSNETWORKDATASLOTLENChannelIndex", "123");
-        map.put("tdmaParmsNetworkDataSlotLen", "two");
+        int count = 0, depth = 0;
+        String key = null;
+        Map<String, String> resultMap = new LinkedHashMap<>();    //LinkedHashMap按照插入的顺序排列
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            if ("count".equals(entry.getKey())) {
+                count = Integer.parseInt(entry.getValue());
+            } else if ("depth".equals(entry.getKey())) {
+                depth = Integer.parseInt(entry.getValue());
+            } else if ("key".equals(entry.getKey())) {
+                key = entry.getValue();
+            } else {
+                resultMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        traversAndCount.countPosition(count, key, root.getNext());
         int position = traversAndCount.getPosition();
-        PartialModificationWithNIO.changeTxt(map, position, 7, 5, "tdmaparmsnetworkdataslotlenentry", root.getNext());
+        PartialModificationWithNIO.changeTxt(map, position, count, depth, key, root.getNext());
         //修改完文件后，需要重新跟新一下树结构
-        return "redirect:toUpload";
+//        return "redirect:toUpload";
+        return map;
     }
 }

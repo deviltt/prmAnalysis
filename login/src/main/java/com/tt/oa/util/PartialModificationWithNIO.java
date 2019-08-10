@@ -17,10 +17,13 @@ public class PartialModificationWithNIO {
     private static Map<String, String> targetMap;
 
     /**
+     *
      * @param map
      * @param position
      * @param count
      * @param depth
+     * @param key
+     * @param roots
      * @throws IOException
      */
     public static void changeTxt(Map<String, String> map, int position, int count, int depth, String key, List<TreeNode> roots) throws IOException {
@@ -123,7 +126,7 @@ public class PartialModificationWithNIO {
             return null;
         }
         for (TreeNode node : roots) {
-            if ((!node.getKeyRoot().toLowerCase().equals(key)) || (count != node.getCount() && node.getKeyRoot().toLowerCase().equals(key))) {
+            if ((!node.getKeyRoot().equals(key)) || (count != node.getCount() && node.getKeyRoot().equals(key))) {
                 findThisKey(count, key, node.getNext());
             } else {
                 isFind = true;
