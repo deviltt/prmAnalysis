@@ -63,6 +63,7 @@ public class TreeController {
     public String search(@Param("key") String key, HttpServletRequest request) {
         List<TreeNode> list = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
+        //把符合条件的都放在list里面
         doSearch(root, key.toLowerCase(), list);
         request.getSession().setAttribute("list", list);
 //        String content = preOrderTraverse(list, 0, stringBuilder);

@@ -70,7 +70,13 @@ public class BuildTree {
         return stringBuilder.toString();
     }
 
-
+    /**
+     *
+     * @param roots 存放TreeNode的集合
+     * @param depth
+     * @param stringBuilder 只需要遍历到自己的Property即可
+     * @return
+     */
     public static String preOrderTraverseWithSubmit(List<TreeNode> roots, int depth, StringBuilder stringBuilder) {
         if (roots == null)
             return "";
@@ -107,7 +113,7 @@ public class BuildTree {
             }
             stringBuilder.append("<input type=\"submit\" value=\"修改\"/>");
             stringBuilder.append("</form>");
-            preOrderTraverse(node.getNext(), depth + 1, stringBuilder);
+//            preOrderTraverse(node.getNext(), depth + 1, stringBuilder);
         }
         return stringBuilder.toString();
     }
@@ -129,7 +135,8 @@ public class BuildTree {
             List<TreeNode> tempList = temp.getNext();
             if (tempList != null) {
                 for (TreeNode treeNode : tempList) {
-                    if (key.equals(treeNode.getKeyRoot().toLowerCase())) {
+                    //如果root的值等于key，需要观察这个root是否有属性property
+                    if (key.equals(treeNode.getKeyRoot().toLowerCase())&&treeNode.getListValue()!=null) {
                         list.add(treeNode);
                         canReturn = true;
                     }
