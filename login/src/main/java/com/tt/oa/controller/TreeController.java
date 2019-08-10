@@ -95,13 +95,15 @@ public class TreeController {
 
     @RequestMapping("/update")
     public String updateAttribute() throws IOException {
-        TraversAndCount traversAndCount = new TraversAndCount();
-        traversAndCount.countPosition(2, "ip", root.getNext());
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("ipForwarding", "forwarding");
-        map.put("ipDefaultTTL", "65");
-        int position = TraversAndCount.position;
-        PartialModificationWithNIO.changeTxt(map, position, 2, 1, "ip", root.getNext());
+        //计算位置
+        TraversAndCount traversAndCount = new TraversAndCount(23);
+
+        traversAndCount.countPosition(0, "ipforward", root.getNext());
+        Map<String, String> map = new LinkedHashMap<>();    //LinkedHashMap按照插入的顺序排列
+//        map.put("ipForwarding", "forwarding");
+//        map.put("ipDefaultTTL", "65");
+        int position = traversAndCount.getPosition();
+        PartialModificationWithNIO.changeTxt(map, position, 0, 2, "ipforward", root.getNext());
         return "redirect:toIndex";
     }
 }

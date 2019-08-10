@@ -76,14 +76,16 @@ public class PartialModificationWithNIO {
         stringBuilder.append("[ ");
         stringBuilder.append(resultNode.getKeyRoot());
         stringBuilder.append(" ]\r\n");
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            for (int i = 0; i < 3 * (depth + 1); i++) {
-                stringBuilder.append(" ");
+        if (map != null && map.entrySet() != null) {
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                for (int i = 0; i < 3 * (depth + 1); i++) {
+                    stringBuilder.append(" ");
+                }
+                stringBuilder.append(entry.getKey());
+                stringBuilder.append(" = \"");
+                stringBuilder.append(entry.getValue());
+                stringBuilder.append("\"\r\n");
             }
-            stringBuilder.append(entry.getKey());
-            stringBuilder.append(" = \"");
-            stringBuilder.append(entry.getValue());
-            stringBuilder.append("\"\r\n");
         }
         for (int i = 0; i < 3 * depth; i++) {
             stringBuilder.append(" ");

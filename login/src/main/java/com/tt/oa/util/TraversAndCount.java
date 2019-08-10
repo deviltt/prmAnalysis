@@ -14,11 +14,19 @@ import java.util.Set;
  * 从而对配置文件进行修改
  */
 public class TraversAndCount {
-    public static int position = 23;
+    public int position;
     private final int STARTTAG = 6; //开始标签[ MIB ]  \r\n
     private final int ENDTAG = STARTTAG + 3; //结束标签 [end MIB] \r\n
     private final int PROPERTY = 7; //属性的常量  = " " 一共是5个字符 再加上 \r\n
     private boolean isFind = false;
+
+    public TraversAndCount(int position) {
+        this.position = position;
+    }
+
+    public int getPosition() {
+        return position;
+    }
 
     /**
      * @param count 第几个key，因为会有名称相同的key
