@@ -98,13 +98,13 @@ public class TreeController {
         //计算位置
         TraversAndCount traversAndCount = new TraversAndCount(23);
 
-        traversAndCount.countPosition(0, "system", root.getNext());
+        traversAndCount.countPosition(7, "tdmaparmsnetworkdataslotlenentry", root.getNext());
         Map<String, String> map = new LinkedHashMap<>();    //LinkedHashMap按照插入的顺序排列
-        map.put("sysContact", "tt@ndsatcom");
-        map.put("sysName", "tt IDU 2X00/5000");
-        map.put("sysLocation", "tt");
+        map.put("TDMAPARMSNETWORKDATASLOTLENChannelIndex", "123");
+        map.put("tdmaParmsNetworkDataSlotLen", "two");
         int position = traversAndCount.getPosition();
-        PartialModificationWithNIO.changeTxt(map, position, 0, 1, "system", root.getNext());
-        return "redirect:toIndex";
+        PartialModificationWithNIO.changeTxt(map, position, 7, 5, "tdmaparmsnetworkdataslotlenentry", root.getNext());
+        //修改完文件后，需要重新跟新一下树结构
+        return "redirect:toUpload";
     }
 }

@@ -62,8 +62,7 @@ public class PartialModificationWithNIO {
 //        //临时文件的内容指针归零，方便拷贝时从头开始
         tempRA.seek(0);
 
-        //将要修改的内容追加，这一步可能存在问题
-        System.out.println(newStringBuilder.toString());
+        //将要修改的内容追加
         resultRA.write(newStringBuilder.toString().getBytes());    //直接在后面追加
 
 //        //把临时文件的内容复制过来
@@ -74,21 +73,19 @@ public class PartialModificationWithNIO {
         randomAccessFile.close();
         if (sourceFile.exists()) {
             sourceFile.delete();
-            System.out.println("success");
         } else {
-            System.out.println("fail");
+            System.out.println("delete fail");
         }
         File endFile = new File("D:\\prm\\login\\file\\hello.txt");
         RandomAccessFile randomAccessFile1 = new RandomAccessFile(endFile, "rw");
-        System.out.println(randomAccessFile1.getFilePointer());
         resultRA.seek(0);
         while ((len = resultRA.read(bytes)) != -1) {
             randomAccessFile1.write(bytes, 0, len);
         }
         randomAccessFile1.close();
         resultRA.close();
-        tempResultFile.deleteOnExit();
-        tempFile.deleteOnExit();
+        tempResultFile.delete();
+        tempFile.delete();
     }
 
     private static StringBuilder splicingRootAndProperty(StringBuilder stringBuilder, int depth, Map<String, String> map, TreeNode treeNode) {
