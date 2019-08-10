@@ -28,45 +28,67 @@ public class PartialModificationWithNIO {
         resultNode = findThisKey(count, key, roots);
         targetMap = resultNode.getListValue();
 
-        File sourceFile = new File("D:\\prm\\login\\file\\hello1.txt");
+        File sourceFile = new File("D:\\prm\\login\\file\\hello.txt");
         File tempFile = File.createTempFile("hello", ".txt");
+        File tempResultFile = File.createTempFile("resultFile", ".txt");
 
         //使用NIO的内存映射功能快速修改文件信息
         RandomAccessFile randomAccessFile = new RandomAccessFile(sourceFile, "rw");
         RandomAccessFile tempRA = new RandomAccessFile(tempFile, "rw");
+        RandomAccessFile resultRA = new RandomAccessFile(tempResultFile, "rw");
 
-        StringBuilder stringBuilder = new StringBuilder();
-        StringBuilder stringBuilder1 = new StringBuilder();
+        StringBuilder newStringBuilder = new StringBuilder();
+        StringBuilder originStringBuilder = new StringBuilder();
 
         //知道节点，拼接由root和property组成的字符串
-        stringBuilder1 = splicingRootAndProperty(stringBuilder1, depth, resultNode.getListValue(), resultNode);
-        stringBuilder = splicingRootAndProperty(stringBuilder, depth, map, resultNode);
+        originStringBuilder = splicingRootAndProperty(originStringBuilder, depth, resultNode.getListValue(), resultNode);
+        newStringBuilder = splicingRootAndProperty(newStringBuilder, depth, map, resultNode);
 
-        int newPosition = position + stringBuilder1.toString().getBytes().length;
+        int newPosition = position + originStringBuilder.toString().getBytes().length;
 
         int len = 0;
         byte[] bytes = new byte[1024];
 
-        System.out.println("newPosition: " + newPosition);
+        //把0~position-1位置的字节都保存到resultFile中去
+        byte[] tempBytes = new byte[position];
+        randomAccessFile.read(tempBytes);
+        resultRA.write(tempBytes, 0, position);
+//        //首先定位到后面不动的地方
         randomAccessFile.seek(newPosition);
+        //将后面不动的内容存放到临时文件中去
         while ((len = randomAccessFile.read(bytes)) != -1) {
             tempRA.write(bytes, 0, len);
         }
+//        //临时文件的内容指针归零，方便拷贝时从头开始
         tempRA.seek(0);
 
-        randomAccessFile.seek(position);
+        //将要修改的内容追加，这一步可能存在问题
+        System.out.println(newStringBuilder.toString());
+        resultRA.write(newStringBuilder.toString().getBytes());    //直接在后面追加
 
-        randomAccessFile.write(stringBuilder.toString().getBytes());    //直接在后面追加
-
-        //把临时文件的内容复制过来
-        len = 0;
+//        //把临时文件的内容复制过来
         while ((len = tempRA.read(bytes)) != -1) {
-            randomAccessFile.write(bytes, 0, len);
+            resultRA.write(bytes, 0, len);
         }
-
-        tempFile.deleteOnExit();
-        randomAccessFile.close();
         tempRA.close();
+        randomAccessFile.close();
+        if (sourceFile.exists()) {
+            sourceFile.delete();
+            System.out.println("success");
+        } else {
+            System.out.println("fail");
+        }
+        File endFile = new File("D:\\prm\\login\\file\\hello.txt");
+        RandomAccessFile randomAccessFile1 = new RandomAccessFile(endFile, "rw");
+        System.out.println(randomAccessFile1.getFilePointer());
+        resultRA.seek(0);
+        while ((len = resultRA.read(bytes)) != -1) {
+            randomAccessFile1.write(bytes, 0, len);
+        }
+        randomAccessFile1.close();
+        resultRA.close();
+        tempResultFile.deleteOnExit();
+        tempFile.deleteOnExit();
     }
 
     private static StringBuilder splicingRootAndProperty(StringBuilder stringBuilder, int depth, Map<String, String> map, TreeNode treeNode) {

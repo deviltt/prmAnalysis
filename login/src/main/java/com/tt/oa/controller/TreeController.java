@@ -98,12 +98,13 @@ public class TreeController {
         //计算位置
         TraversAndCount traversAndCount = new TraversAndCount(23);
 
-        traversAndCount.countPosition(0, "ipforward", root.getNext());
+        traversAndCount.countPosition(0, "system", root.getNext());
         Map<String, String> map = new LinkedHashMap<>();    //LinkedHashMap按照插入的顺序排列
-//        map.put("ipForwarding", "forwarding");
-//        map.put("ipDefaultTTL", "65");
+        map.put("sysContact", "tt@ndsatcom");
+        map.put("sysName", "tt IDU 2X00/5000");
+        map.put("sysLocation", "tt");
         int position = traversAndCount.getPosition();
-        PartialModificationWithNIO.changeTxt(map, position, 0, 2, "ipforward", root.getNext());
+        PartialModificationWithNIO.changeTxt(map, position, 0, 1, "system", root.getNext());
         return "redirect:toIndex";
     }
 }
