@@ -41,7 +41,7 @@ public class TraversAndCount {
         for (int i = 0; i < roots.size(); i++) {
             TreeNode node = roots.get(i);
             //如果不是要查找的key，或者是找的key但是位置不同，即count不同
-            if ((!node.getKeyRoot().toLowerCase().equals(key)) || (node.getKeyRoot().toLowerCase().equals(key) && count != node.getCount())) {
+            if ((!node.getKeyRoot().equals(key)) || (node.getKeyRoot().equals(key) && count != node.getCount())) {
                 //计算key的字节长度
                 position += (node.getDepth() - 1) * 3 + node.getKeyRoot().length() + STARTTAG;
                 //遍历key对应的property，有的key是没有properties的

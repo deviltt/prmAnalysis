@@ -20,30 +20,30 @@
 <script>
     function clickFunction(i) {
         var form = document.getElementById("form" + i);
+        var inputs = form.getElementsByTagName("input");
+        var spans = form.getElementsByTagName("span");
         //form标签的第一个和最后一个没有property的key和value，所以只要遍历中间的索引
-        var child = form.childNodes;
         //childNodes里面的input标签，索引为1
         var map = {};
-        for (var j = 0; j < child.length; j++) {
-            if (j == 0) {
-                map["key"] = child[j].innerText;    //key
-                map["count"] = child[j].childNodes[j].attributes[1].nodeValue;    //count
-                map["depth"] = child[j].childNodes[j].attributes[2].nodeValue;    //depth
-            } else if (j != child.length - 1) {
-                var propertyKey = child[j].childNodes[1].attributes[0].nodeValue;
-                var propertyValue = child[j].childNodes[1].attributes[1].nodeValue;
-                map[propertyKey] = propertyValue;
-            }
+        map["key"] = spans[0].innerText;
+        map["count"]=spans[0].getAttribute("count");
+        map["depth"]=spans[0].getAttribute("depth");
+        var propertyKey, propertyValue;
+        for (var j = 0; j < inputs.length; j++) {
+            propertyKey=inputs[j].name;
+            propertyValue=inputs[j].value;
+            map[propertyKey]=propertyValue;
         }
         console.log(map);
         $.ajax({
             url: "/tree/update",
-            contentType : 'application/json;charset=utf-8',
+            contentType: 'application/json;charset=utf-8',
             type: "post",
             data: JSON.stringify(map),
             dataType: "json",
             success: function (result) {
                 alert("修改成功");
+                window.location.href = 'http://localhost:8080/tree/toUpload';
             }
         })
     }

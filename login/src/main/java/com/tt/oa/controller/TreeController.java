@@ -109,6 +109,7 @@ public class TreeController {
     @ResponseBody
     public Map<String, String> updateAttribute(@RequestBody Map<String, String> map) throws IOException {
         System.out.println(map);
+        Map<String, String> modelMap = new HashMap<>();
         //计算位置
         TraversAndCount traversAndCount = new TraversAndCount(23);
         int count = 0, depth = 0;
@@ -127,9 +128,9 @@ public class TreeController {
         }
         traversAndCount.countPosition(count, key, root.getNext());
         int position = traversAndCount.getPosition();
-        PartialModificationWithNIO.changeTxt(map, position, count, depth, key, root.getNext());
+        PartialModificationWithNIO.changeTxt(map, position, count, depth - 1, key, root.getNext());
         //修改完文件后，需要重新跟新一下树结构
-//        return "redirect:toUpload";
-        return map;
+        modelMap.put("msg", "success");
+        return modelMap;
     }
 }
