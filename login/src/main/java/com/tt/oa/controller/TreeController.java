@@ -108,7 +108,6 @@ public class TreeController {
     @RequestMapping("/update")
     @ResponseBody
     public Map<String, String> updateAttribute(@RequestBody Map<String, String> map) throws IOException {
-        System.out.println(map);
         Map<String, String> modelMap = new HashMap<>();
         //计算位置
         TraversAndCount traversAndCount = new TraversAndCount(23);

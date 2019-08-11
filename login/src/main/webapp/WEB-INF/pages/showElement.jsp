@@ -42,7 +42,7 @@
             data: JSON.stringify(map),
             dataType: "json",
             success: function (result) {
-                alert("修改成功");
+                alert(result["msg"]);
                 window.location.href = 'http://localhost:8080/tree/toUpload';
             }
         })
