@@ -25,9 +25,7 @@
     </mvc:interceptors>
 
     <mvc:annotation-driven conversion-service="conversionService"/>
-    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-
-    </bean>
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
 
     <!-- 配置视图解析器，Handler返回的String拼接成对应的视图页面显示 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -36,6 +34,11 @@
     </bean>
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <!-- 托管MyExceptionHandler -->
+<!--    <bean class="com.tt.oa.exception.MyExceptionHandler"/>-->
+    <bean class="com.tt.oa.exception.DbExceptionHandler"/>
+    <bean class="com.tt.oa.exception.NoExceptionHandler"/>
 
     <context:component-scan base-package="com.tt.oa.controller"/>
 </beans>
