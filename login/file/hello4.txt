@@ -1,9 +1,9 @@
 VERSION = "5.600.260"
 [ MIB-2 ]
    [ SYSTEM ]
-      sysContact = "support@ndsatcom.cn"
+      sysContact = "support@ndsatcom.com"
       sysName = "SkyWAN IDU 2X00/5000 - V5.60"
-      sysLocation = "master-4m"
+      sysLocation = "master 4M"
    [end SYSTEM ]
    [ INTERFACES ]
       [ IFTABLE ]
@@ -16,8 +16,8 @@ VERSION = "5.600.260"
             IFAdminStatus = "up"
          [end IFENTRY ]
          [ IFENTRY ]
-            IFIndex = "7"
-            IFAdminStatus = "adsdff"
+            IFIndex = "3"
+            IFAdminStatus = "down"
          [end IFENTRY ]
          [ IFENTRY ]
             IFIndex = "4"
@@ -32,7 +32,7 @@ VERSION = "5.600.260"
             IFAdminStatus = "up"
          [end IFENTRY ]
          [ IFENTRY ]
-            IFIndex = "7"
+            IFIndex = "8"
             IFAdminStatus = "up"
          [end IFENTRY ]
          [ IFENTRY ]
@@ -145,20 +145,20 @@ VERSION = "5.600.260"
             OSPFIFAuthType = "none"
          [end OSPFIFENTRY ]
          [ OSPFIFENTRY ]
-            OSPFIFIpAddress = "10.100.0.4"
+            OSPFIFIpAddress = "10.100.0.3"
             ospfAddressLessIf = "0"
             OSPFIFAreaId = "0.0.0.0"
             OSPFIFType = "broadcast"
-            OSPFIFAdminStat = "able"
+            OSPFIFAdminStat = "enabled"
             OSPFIFRtrPriority = "200"
             OSPFIFTransitDelay = "1"
-            OSPFIFRetransInterval = "6"
+            OSPFIFRetransInterval = "5"
             OSPFIFHelloInterval = "10"
-            OSPFIFRtrDeadInterval = "57"
+            OSPFIFRtrDeadInterval = "40"
             OSPFIFPollInterval = "120"
             OSPFIFAuthKey = "0000000000000000"
             OSPFIFStatus = "active"
-            OSPFIFMulticastForwarding = "active"
+            OSPFIFMulticastForwarding = "blocked"
             OSPFIFDemand = "false"
             OSPFIFAuthType = "none"
          [end OSPFIFENTRY ]
@@ -872,24 +872,24 @@ VERSION = "5.600.260"
    [end TDMA ]
    [ LOGGING ]
       [ LOGGINGPARMS ]
-         loggingParmsEnable = "false"
-         loggingParmsSeverity = "311"
-         loggingParmsModule = "444"
-         loggingParmsSpoolInterval = "01"
+         loggingParmsEnable = "true"
+         loggingParmsSeverity = "31"
+         loggingParmsModule = "4095"
+         loggingParmsSpoolInterval = "0"
          loggingParmsSpoolUtilization = "p80"
          loggingParmsSpoolDestination = "none"
          loggingParmsSpoolTargetOne = "0.0.0.0"
-         loggingParmsSpoolTargetTwo = "123"
-         loggingParmsSpoolTargetOneUsername = "asdf"
-         loggingParmsSpoolTargetTwoUsername = "df"
-         loggingParmsSpoolTargetOnePwd = "asd"
-         loggingParmsSpoolTargetTwoPwd = "asdf"
-         loggingParmsSpoolTargetOneDirectory = "asdf"
-         loggingParmsSpoolTargetTwoDirectory = "sdf"
+         loggingParmsSpoolTargetTwo = "0.0.0.0"
+         loggingParmsSpoolTargetOneUsername = ""
+         loggingParmsSpoolTargetTwoUsername = ""
+         loggingParmsSpoolTargetOnePwd = ""
+         loggingParmsSpoolTargetTwoPwd = ""
+         loggingParmsSpoolTargetOneDirectory = ""
+         loggingParmsSpoolTargetTwoDirectory = ""
          loggingParmsManualTarget = "0.0.0.0"
-         loggingParmsManualTargetUsername = "asd"
-         loggingParmsManualTargetPwd = "asdf"
-         loggingParmsManualTargetDirectory = "gd"
+         loggingParmsManualTargetUsername = ""
+         loggingParmsManualTargetPwd = ""
+         loggingParmsManualTargetDirectory = ""
       [end LOGGINGPARMS ]
    [end LOGGING ]
    [ RBM ]
@@ -899,8 +899,8 @@ VERSION = "5.600.260"
    [end RBM ]
    [ ADMIN ]
       [ ADMINSTATION ]
-         adminStationResetTime = "1970-01-01 00:10:23"
-         adminStationResetType = "shit"
+         adminStationResetTime = "1970-01-01 00:00:00"
+         adminStationResetType = "bootPermFileSet"
       [end ADMINSTATION ]
       [ ADMINTRAPDESTINATIONS ]
       [end ADMINTRAPDESTINATIONS ]
