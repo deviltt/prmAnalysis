@@ -3,7 +3,7 @@ VERSION = "5.600.260"
    [ SYSTEM ]
       sysContact = "support@ndsatcom.cn"
       sysName = "SkyWAN IDU 2X00/5000 - V5.60"
-      sysLocation = "master-4m"
+      sysLocation = "master"
    [end SYSTEM ]
    [ INTERFACES ]
       [ IFTABLE ]

@@ -48,6 +48,6 @@
         })
     }
 </script>
-<script type="text/javascript" src="../../js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.4.1.js"></script>
 </body>
 </html>

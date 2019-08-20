@@ -10,6 +10,22 @@ public class ZTreeNode {
     private Boolean open;
     private List<Map<String, String>> properties;
     private List<ZTreeNode> children;
+    private int count;
+
+    public ZTreeNode() {
+    }
+
+    public ZTreeNode(String name) {
+        this.name = name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public String getName() {
         return name;
@@ -77,7 +93,9 @@ public class ZTreeNode {
         }
         if (children != null) {
             int size = 0;
-            stringBuilder.append(",");
+            if (properties!=null){
+                stringBuilder.append(",");
+            }
             for (ZTreeNode zTreeNode : children) {
                 stringBuilder.append(zTreeNode.toString());
                 if (!(size == children.size() - 1)) {

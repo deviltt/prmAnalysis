@@ -9,90 +9,78 @@
 <html>
 <head>
     <title>ztree</title>
-    <script type="text/javascript" src="../../js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="../../js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="../../js/ztree/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="../../js/ztree/jquery.ztree.all.js"></script>
     <link rel="stylesheet" href="../../css/zTreeStyle/zTreeStyle.css">
 </head>
 <body>
 <div class="box">
+    <form id="form" enctype="multipart/form-data">
+        <div>
+            <input type="file" class="upload" id="uploadFile" name="uploadFile">
+            <input type="button" value="上传" onclick="test()"/>
+        </div>
+    </form>
     <ul class="ztree" id="tree"></ul>
+</div>
+<div id="append_div">
+    <ul class="ztree" id="tree1"></ul>
 </div>
 
 <script type="text/javascript">
-    $(function () {
-        var setting = {
-            data: {
-                simpleData: {
-                    enable: true
-                }
-            },
-            // check: {
-            //     enable: true,
-            //     chkStyle: "checkbox"
-            // },
-            callback: {
-                // onCheck: zTreeOnCheck,
-                onClick: zTreeOnClick
+    var setting = {
+        data: {
+            simpleData: {
+                enable: true
             }
-        };
-
-        // var data = [
-        //     {
-        //         name: "MIB-2", "open": "false", "children": [{
-        //             "name": "SYSTEM",
-        //             "open": "false",
-        //             "children": [{"name": "sysContact", "value": "support@ndsatcom.cn"}, {
-        //                 "name": "sysName",
-        //                 "value": "SkyWAN IDU 2X00/5000 - V5.60"
-        //             },
-        //                 {"name": "sysLocation", "value": "master"},{
-        //                 name:"tt", open:'true',children:[]
-        //                 }
-        //             ]
-        //         }, {
-        //             "name": "INTERFACES", "open": "false", "children": [
-        //                 {
-        //                     "name": "IFTABLE", "open": "false", "children": [
-        //                         {
-        //                             "name": "IFENTRY", "open": "false", "children": [
-        //                                 {"name": "IFIndex", "value": "1"},
-        //                                 {"name": "IFAdminStatus", "value": "up"}
-        //                             ]
-        //                         }
-        //                     ]
-        //                 }
-        //             ]
-        //         }
-        //         ]
-        //     }
-            // {
-            //     "name": "SNMP", "open": true, children: [
-            //         {"name": "snmpEnableAuthenTraps","value":"disabled"}
-            //     ]
-            // },
-            // {
-            //     "name": "ip", "open": true, children: [
-            //         {"name": "ipForwarding","value":"forwarding"},
-            //         {"name": "ipDefaultTTL","value":"65"},
-            //         {"name": "IPFORWARD", "open": true, children: []}
-            //     ]
-            // }
-        // ];
-
-        var data=[{name:'SYSTEM',open:'true',children:[{name:'sysContact',value:'support@ndsatcom.cn'},{name:'sysName',value:'SkyWAN IDU 2X00/5000 - V5.60'},{name:'sysLocation',value:'master'},{name:'RTRIPADDRESSENTRY',open:'true',children:[]},{name:'RTRIPADDRESSENTRY',open:'true',children:[{name:'sysContact',value:'support@ndsatcom.cn'},{name:'sysName',value:'SkyWAN IDU 2X00/5000 - V5.60'},{name:'sysLocation',value:'master'}]}]}
-        ];
-
-        $.fn.zTree.init($("#tree"), setting, data);
-
-        // function zTreeOnCheck(event, treeId, treeNode) {
-        //     alert(treeNode.name);
-        // }
-
-        function zTreeOnClick(event, treeId, treeNode) {
-            alert(treeNode.value);
+        },
+        check: {
+            enable: true,
+            chkStyle: "checkbox"
+        },
+        callback: {
+            onClick: zTreeOnClick
         }
-    });
+    };
+
+    function test() {
+        var formData = new FormData(document.getElementById("form"));
+        // var formData = new FormData($("#form")[0]);
+        formData.append("uploadFile", $(".upload")[0].files[0]);
+        $.ajax({
+            url: "/ztree/build",
+            type: "post",
+            contentType: false,  //禁止设置请求类型
+            processData: false,  //禁止jQuery对Data数据的处理，默认会处理
+            data: formData,
+            success: function (data) {
+                // var result = (new Function("return " + data))();
+                var result = eval("(" + data + ")");
+                $("#form").hide();
+                $.fn.zTree.init($("#tree"), setting, result);
+            }
+        })
+    }
+
+    // function zTreeOnCheck(event, treeId, treeNode) {
+    //     alert(treeNode.name);
+    // }
+
+
+    function zTreeOnClick(event, treeId, treeNode) {
+        alert(treeNode.value);
+        var treeObj = $.fn.zTree.getZTreeObj("tree");
+        var sNodes = treeObj.getSelectedNodes();
+        if (sNodes.length > 0) {
+            alert("sNodes.tId : " + sNodes[0].tId);
+            var node = treeObj.getNodeByTId(sNodes[0].tId);
+            console.log(node);
+            console.log(node.getIndex());
+            $.fn.zTree.init($("#tree1"), setting, node);
+        }
+        // alert(treeNode.getIndex());  //获取选中节点在当前列表中的位置
+    }
 </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.tt.oa.io;
 
+import com.tt.oa.entity.ZTreeNode;
+
 import java.io.*;
 import java.util.*;
 
@@ -34,6 +36,28 @@ public class FileReaderTest {
         }
         String string;
         while ((string = reader.readLine()) != null) {
+            stringBuilder.append(string + "\n");
+        }
+        return Arrays.asList(stringBuilder.toString().split("\n"));
+    }
+
+    public static List<String> getZTreeString(InputStream fileStream, ZTreeNode root) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            reader = new BufferedReader(new InputStreamReader(fileStream));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String string;
+        while ((string = reader.readLine()) != null) {
+            if (string.contains("VERSION")){
+                String[] strings=string.split("=");
+                for (int i = 0; i < strings.length; i++) {
+                    if (i==strings.length-1){
+                        root.setName(strings[i].trim());
+                    }
+                }
+            }
             stringBuilder.append(string + "\n");
         }
         return Arrays.asList(stringBuilder.toString().split("\n"));
@@ -106,6 +130,29 @@ public class FileReaderTest {
         }
         if (flag)
             map.put(string, temp);
+        else
+            map.put(string, null);
+
+        //该root没有属性节点的情况，返回null
+        return map;
+    }
+
+    public static Map<String, List<Map<String, String>>> traverseZTreeProperty(String string, List<String> strings){
+        boolean flag=false; //用来标记是否是子root标签里面的内容
+        Map<String, List<Map<String, String>>> map=new LinkedHashMap<>();
+        List<Map<String, String>> list=new LinkedList<>();
+//        Map<String, String> temp=new LinkedHashMap<>();
+        for (int i = 0; i < strings.size(); i++) {
+            //如果某一行里面没有"["，说明该子节点是有自己的属性行的
+            if (!strings.get(i).contains("[")){
+                flag=true;
+                PropertyHelper.ZTreePropertyHelp(list, strings.get(i));
+            }else {
+                break;
+            }
+        }
+        if (flag)
+            map.put(string, list);
         else
             map.put(string, null);
 
