@@ -13,6 +13,22 @@
     <script type="text/javascript" src="../../js/ztree/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="../../js/ztree/jquery.ztree.all.js"></script>
     <link rel="stylesheet" href="../../css/zTreeStyle/zTreeStyle.css">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .box{
+            width: 50%;
+            background: lightgrey;
+            float: left;
+        }
+        .edit{
+            width: 50%;
+            background: beige;
+            float: right;
+        }
+    </style>
 </head>
 <body>
 <div class="box">
@@ -24,7 +40,7 @@
     </form>
     <ul class="ztree" id="tree"></ul>
 </div>
-<div id="append_div">
+<div class="edit">
     <ul class="ztree" id="tree1"></ul>
 </div>
 
@@ -36,8 +52,9 @@
             }
         },
         check: {
-            enable: true,
-            chkStyle: "checkbox"
+            enable: false,
+            chkStyle: "checkbox",
+            chkboxType:{"Y":"","N":""}
         },
         callback: {
             onClick: zTreeOnClick
@@ -69,11 +86,11 @@
 
 
     function zTreeOnClick(event, treeId, treeNode) {
-        alert(treeNode.value);
+        // alert(treeNode.value);
         var treeObj = $.fn.zTree.getZTreeObj("tree");
         var sNodes = treeObj.getSelectedNodes();
         if (sNodes.length > 0) {
-            alert("sNodes.tId : " + sNodes[0].tId);
+            // alert("sNodes.tId : " + sNodes[0].tId);
             var node = treeObj.getNodeByTId(sNodes[0].tId);
             console.log(node);
             console.log(node.getIndex());
