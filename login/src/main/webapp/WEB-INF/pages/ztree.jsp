@@ -14,16 +14,18 @@
     <script type="text/javascript" src="../../js/ztree/jquery.ztree.all.js"></script>
     <link rel="stylesheet" href="../../css/zTreeStyle/zTreeStyle.css">
     <style>
-        *{
-            margin:0;
-            padding:0;
+        * {
+            margin: 0;
+            padding: 0;
         }
-        .box{
+
+        .box {
             width: 50%;
             background: lightgrey;
             float: left;
         }
-        .edit{
+
+        .edit {
             width: 50%;
             background: beige;
             float: right;
@@ -41,7 +43,7 @@
     <ul class="ztree" id="tree"></ul>
 </div>
 <div class="edit">
-    <ul class="ztree" id="tree1"></ul>
+    <button type="button" value="update" onclick="updateFunction()">修改</button>
 </div>
 
 <script type="text/javascript">
@@ -54,7 +56,7 @@
         check: {
             enable: false,
             chkStyle: "checkbox",
-            chkboxType:{"Y":"","N":""}
+            chkboxType: {"Y": "", "N": ""}
         },
         callback: {
             onClick: zTreeOnClick
@@ -80,23 +82,83 @@
         })
     }
 
-    // function zTreeOnCheck(event, treeId, treeNode) {
-    //     alert(treeNode.name);
-    // }
+    //获取edit编辑区父节点
+    var $edit = $(".edit");
 
+    /**
+     * 递归显示子节点
+     * 但是只要显示没有children属性的节点
+     * 将他们与父node拼接起来
+     * @param node
+     */
+    function buildSubTreeOnRight(node) {
+        var str = "";
+        //递归显示节点
+        for (var i in node.children) {
+            var subNode = node.children[i];
+            if (!subNode.hasOwnProperty("children")) {
+                str += "<div class='keyValue'>" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;<span>" + subNode.name + "&nbsp;:&nbsp;</span>" +
+                    "<input name='" + subNode.name + "' value='" + subNode.value + "'/>" +
+                    "</div>";
+            }
+        }
+        $edit.append("<div>" +
+            "<span class='node' count='" + node.getIndex() + "' depth='" + node.level + "'>" + node.name + "</span>" + str + "</div>");
+    }
 
     function zTreeOnClick(event, treeId, treeNode) {
-        // alert(treeNode.value);
+        var node;
         var treeObj = $.fn.zTree.getZTreeObj("tree");
         var sNodes = treeObj.getSelectedNodes();
         if (sNodes.length > 0) {
-            // alert("sNodes.tId : " + sNodes[0].tId);
-            var node = treeObj.getNodeByTId(sNodes[0].tId);
-            console.log(node);
-            console.log(node.getIndex());
+            //如果点击的节点时同级节点中的最后一个节点，则获取它的父级节点
+            if (!sNodes[0].isParent) {
+                node = sNodes[0].getParentNode();
+            } else {
+                //tId是节点的唯一标识
+                node = treeObj.getNodeByTId(sNodes[0].tId);
+            }
             $.fn.zTree.init($("#tree1"), setting, node);
         }
-        // alert(treeNode.getIndex());  //获取选中节点在当前列表中的位置
+        buildSubTreeOnRight(node);
+    }
+
+    function updateFunction() {
+        var list = [];
+        var $divs = $(".edit > div");
+        console.log($divs);
+        for (var index in $divs) {
+            if (index === "length") {
+                break;
+            }
+            var map = {};
+            var spans = $divs[index].getElementsByTagName("span");
+            var inputs = $divs[index].getElementsByTagName("input");
+            map["key"] = spans[0].innerText;
+            map["count"] = spans[0].getAttribute("count");
+            map["depth"] = spans[0].getAttribute("depth");
+            var propertyKey, propertyValue;
+            for (var j = 0; j < inputs.length; j++) {
+                propertyKey = inputs[j].name;
+                propertyValue = inputs[j].value;
+                map[propertyKey] = propertyValue;
+            }
+            console.log(map);
+            list.push(map);
+        }
+        console.log(list[0]);
+        $.ajax({
+            url: "/ztree/update",
+            contentType: 'application/json;charset=utf-8',
+            type: "post",
+            data: JSON.stringify(list[0]),
+            dataType: "json",
+            success: function (result) {
+                alert(result["msg"]);
+                window.location.href = 'http://localhost:8080/ztree/toZTree';
+            }
+        })
     }
 </script>
 </body>

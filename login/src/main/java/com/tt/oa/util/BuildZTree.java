@@ -7,7 +7,7 @@ import com.tt.oa.io.FileReaderTest;
 import java.util.*;
 
 public class BuildZTree {
-    public static List<ZTreeNode> buildZTree(List<Map<String, List<String>>> list) {
+    public static List<ZTreeNode> buildZTree(List<Map<String, List<String>>> list, int depth) {
         //什么时候不迭代返回呢，就遍历到最底层时候的逻辑
         if (list == null)
             return null;
@@ -19,12 +19,13 @@ public class BuildZTree {
             for (String key : map.keySet()) {
                 //设置节点的key
                 ZTreeNode subNode = new ZTreeNode(key);
+                subNode.setDepth(depth);
                 subNode.setCount(count++);
                 subNode.setOpen(true);
                 //设置节点的Property
                 subNode.setProperties(FileReaderTest.traverseZTreeProperty(key, map.get(key)).get(key));
 
-                subNode.setChildren(buildZTree(FileReaderTest.traverseRoot(map.get(key))));
+                subNode.setChildren(buildZTree(FileReaderTest.traverseRoot(map.get(key)), depth + 1));
 
                 resultList.add(subNode);
             }

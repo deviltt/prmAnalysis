@@ -11,6 +11,7 @@ public class ZTreeNode {
     private List<Map<String, String>> properties;
     private List<ZTreeNode> children;
     private int count;
+    private int depth;
 
     public ZTreeNode() {
     }
@@ -61,6 +62,14 @@ public class ZTreeNode {
 
     private StringBuilder stringBuilder = new StringBuilder();
 
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int depth) {
+        this.depth = depth;
+    }
+
     @Override
     public String toString() {
         stringBuilder.append("{");
@@ -93,7 +102,7 @@ public class ZTreeNode {
         }
         if (children != null) {
             int size = 0;
-            if (properties!=null){
+            if (properties != null) {
                 stringBuilder.append(",");
             }
             for (ZTreeNode zTreeNode : children) {
