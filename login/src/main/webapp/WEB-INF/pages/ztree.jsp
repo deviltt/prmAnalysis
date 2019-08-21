@@ -152,7 +152,7 @@
             url: "/ztree/update",
             contentType: 'application/json;charset=utf-8',
             type: "post",
-            data: JSON.stringify(list[0]),
+            data: JSON.stringify(list),
             dataType: "json",
             success: function (result) {
                 alert(result["msg"]);

@@ -7,16 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd794433-1dbd-46ac-978e-68853e7a8708" name="Default" comment="计算需要修改节点在文件中的位置">
-      <change afterPath="$PROJECT_DIR$/readme.markdown" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/file/hello.txt" beforeDir="false" afterPath="$PROJECT_DIR$/file/hello.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/login_Web_exploded/WEB-INF/pages/ztree.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/login_Web_exploded/WEB-INF/pages/ztree.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tt/oa/controller/TreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tt/oa/controller/TreeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/readme.markdown" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tt/oa/controller/ZTreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tt/oa/controller/ZTreeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tt/oa/entity/ZTreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tt/oa/entity/ZTreeNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tt/oa/util/BuildZTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tt/oa/util/BuildZTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tt/oa/util/PartialModificationWithNIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tt/oa/util/PartialModificationWithNIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tt/oa/util/TraversAndCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tt/oa/util/TraversAndCount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/ztree.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/ztree.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -62,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/controller/ZTreeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="63" column="64" lean-forward="true" selection-start-line="63" selection-start-column="64" selection-end-line="63" selection-end-column="64" />
+            <state relative-caret-position="499">
+              <caret line="94" column="35" lean-forward="true" selection-start-line="94" selection-start-column="35" selection-end-line="94" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/controller/TreeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="126" column="9" lean-forward="true" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+            <state relative-caret-position="185">
+              <caret line="126" column="9" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -83,21 +78,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/file/hello.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="897" column="21" lean-forward="true" selection-start-line="897" selection-start-column="21" selection-end-line="897" selection-end-column="21" />
+            <state relative-caret-position="-1457">
+              <caret line="815" selection-start-line="815" selection-end-line="815" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/util/TraversAndCount.java">
+        <entry file="file://$PROJECT_DIR$/file/hello4.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="85" column="74" lean-forward="true" selection-start-line="85" selection-start-column="74" selection-end-line="85" selection-end-column="74" />
-              <folding>
-                <element signature="e#617#618#0" expanded="true" />
-                <element signature="e#657#658#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="162">
+              <caret line="9" column="20" lean-forward="true" selection-end-line="908" />
             </state>
           </provider>
         </entry>
@@ -105,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/util/PartialModificationWithNIO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="186" column="64" lean-forward="true" selection-start-line="186" selection-start-column="64" selection-end-line="186" selection-end-column="64" />
+            <state relative-caret-position="161">
+              <caret line="128" column="106" selection-start-line="128" selection-start-column="106" selection-end-line="128" selection-end-column="106" />
               <folding>
                 <element signature="method#changeTxt#0;class#PartialModificationWithNIO#0" />
                 <element signature="method#splicingRootAndProperty#0;class#PartialModificationWithNIO#0" />
@@ -117,10 +108,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/util/TraversAndCount.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="18" column="23" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="23" />
+              <folding>
+                <element signature="e#617#618#0" expanded="true" />
+                <element signature="e#657#658#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/ztree.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1485">
-              <caret line="149" column="29" lean-forward="true" selection-start-line="149" selection-start-column="29" selection-end-line="149" selection-end-column="29" />
+            <state relative-caret-position="333">
+              <caret line="154" column="37" selection-start-line="154" selection-start-column="37" selection-end-line="154" selection-end-column="37" />
               <folding>
                 <element signature="e#22#28#0" expanded="true" />
                 <element signature="e#28#34#0" expanded="true" />
@@ -204,15 +208,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tt/oa/io/FileReaderTest.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/jquery-1.4.2.js" />
-        <option value="$PROJECT_DIR$/readme.markdown" />
         <option value="$PROJECT_DIR$/src/main/java/com/tt/oa/entity/ZTreeNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tt/oa/util/BuildZTree.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/ztree.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tt/oa/controller/ZTreeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tt/oa/controller/TreeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tt/oa/util/PartialModificationWithNIO.java" />
-        <option value="$PROJECT_DIR$/file/hello.txt" />
         <option value="$PROJECT_DIR$/src/main/java/com/tt/oa/util/TraversAndCount.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tt/oa/controller/TreeController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/ztree.jsp" />
+        <option value="$PROJECT_DIR$/readme.markdown" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tt/oa/util/PartialModificationWithNIO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tt/oa/controller/ZTreeController.java" />
+        <option value="$PROJECT_DIR$/file/hello.txt" />
       </list>
     </option>
   </component>
@@ -619,7 +623,7 @@
       <workItem from="1566308062350" duration="2239000" />
       <workItem from="1566345942636" duration="17889000" />
       <workItem from="1566367598532" duration="207000" />
-      <workItem from="1566367921402" duration="5823000" />
+      <workItem from="1566367921402" duration="11553000" />
     </task>
     <task id="LOCAL-00001" summary="解析prm文件">
       <created>1565139080934</created>
@@ -768,7 +772,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566310309639</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="111">
+      <created>1566377285616</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1566377285616</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -804,7 +815,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="293963000" />
+    <option name="totallyTimeSpent" value="299693000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -820,7 +831,7 @@
       <window_info id="Web" order="7" sideWeight="0.50401604" side_tool="true" weight="0.23458445" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49731904" visible="true" weight="0.34844193" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49731904" visible="true" weight="0.44759208" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4348442" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -949,7 +960,8 @@
     <MESSAGE value="将多个错误都定向到一个ExceptionHandler中" />
     <MESSAGE value="测试controller层" />
     <MESSAGE value="为节点添加了点样式" />
-    <option name="LAST_COMMIT_MESSAGE" value="为节点添加了点样式" />
+    <MESSAGE value="111" />
+    <option name="LAST_COMMIT_MESSAGE" value="111" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -963,14 +975,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/exception/DbExceptionHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/service/TestExceptionService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/exception/error.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -1171,23 +1175,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/io/FileReaderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.markdown">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="126">
-            <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/showElement.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
@@ -1323,8 +1310,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/ztree.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="149" column="29" lean-forward="true" selection-start-line="149" selection-start-column="29" selection-end-line="149" selection-end-column="29" />
+        <state relative-caret-position="333">
+          <caret line="154" column="37" selection-start-line="154" selection-start-column="37" selection-end-line="154" selection-end-column="37" />
           <folding>
             <element signature="e#22#28#0" expanded="true" />
             <element signature="e#28#34#0" expanded="true" />
@@ -1336,24 +1323,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/file/hello4.txt">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/util/TraversAndCount.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="25" lean-forward="true" selection-end-line="908" />
+        <state relative-caret-position="154">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="23" />
+          <folding>
+            <element signature="e#617#618#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/controller/TreeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="126" column="9" lean-forward="true" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+        <state relative-caret-position="185">
+          <caret line="126" column="9" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.markdown">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="198">
+            <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.24.RELEASE/spring-web-4.3.24.RELEASE.jar!/org/springframework/web/multipart/MultipartFile.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/developmentEnvironment/java/java8/src.zip!/java/io/FileInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/io/FileReaderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="50" column="22" lean-forward="true" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/util/PartialModificationWithNIO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="186" column="64" lean-forward="true" selection-start-line="186" selection-start-column="64" selection-end-line="186" selection-end-column="64" />
+        <state relative-caret-position="161">
+          <caret line="128" column="106" selection-start-line="128" selection-start-column="106" selection-end-line="128" selection-end-column="106" />
           <folding>
             <element signature="method#changeTxt#0;class#PartialModificationWithNIO#0" />
             <element signature="method#splicingRootAndProperty#0;class#PartialModificationWithNIO#0" />
@@ -1362,31 +1384,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/file/hello4.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="20" lean-forward="true" selection-end-line="908" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/controller/ZTreeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="63" column="64" lean-forward="true" selection-start-line="63" selection-start-column="64" selection-end-line="63" selection-end-column="64" />
+        <state relative-caret-position="499">
+          <caret line="94" column="35" lean-forward="true" selection-start-line="94" selection-start-column="35" selection-end-line="94" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tt/oa/util/TraversAndCount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="85" column="74" lean-forward="true" selection-start-line="85" selection-start-column="74" selection-end-line="85" selection-end-column="74" />
-          <folding>
-            <element signature="e#617#618#0" expanded="true" />
-            <element signature="e#657#658#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/file/hello.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="897" column="21" lean-forward="true" selection-start-line="897" selection-start-column="21" selection-end-line="897" selection-end-column="21" />
+        <state relative-caret-position="-1457">
+          <caret line="815" selection-start-line="815" selection-end-line="815" />
         </state>
       </provider>
     </entry>
