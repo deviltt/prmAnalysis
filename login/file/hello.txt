@@ -8,15 +8,15 @@ VERSION = "5.600.260"
    [ INTERFACES ]
       [ IFTABLE ]
          [ IFENTRY ]
-            IFIndex = "1"
-            IFAdminStatus = "up"
+            IFIndex = "1sdf"
+            IFAdminStatus = "ffdf"
          [end IFENTRY ]
          [ IFENTRY ]
             IFIndex = "2"
-            IFAdminStatus = "up"
+            IFAdminStatus = "updd"
          [end IFENTRY ]
          [ IFENTRY ]
-            IFIndex = "3"
+            IFIndex = "3dd"
             IFAdminStatus = "down"
          [end IFENTRY ]
          [ IFENTRY ]
@@ -24,8 +24,8 @@ VERSION = "5.600.260"
             IFAdminStatus = "down"
          [end IFENTRY ]
          [ IFENTRY ]
-            IFIndex = "5"
-            IFAdminStatus = "down"
+            IFIndex = "5f"
+            IFAdminStatus = "downfd"
          [end IFENTRY ]
          [ IFENTRY ]
             IFIndex = "6"
@@ -372,12 +372,12 @@ VERSION = "5.600.260"
                   FRSPARMSCIRCUITDlciIndex = "22"
                   FRSPARMSCIRCUITRemoteStation = "2"
                   FRSPARMSCIRCUITRemotePort = "2"
-                  FRSPARMSCIRCUITRemoteMcstGroup = "16"
-                  FRSPARMSCIRCUITRemoteDlci = "23"
-                  FRSPARMSCIRCUITIngressCIR = "0"
-                  FRSPARMSCIRCUITIngressBc = "0"
-                  FRSPARMSCIRCUITIngressBe = "0"
-                  FRSPARMSCIRCUITIngressTrafficMode = "unicast"
+                  FRSPARMSCIRCUITRemoteMcstGroup = "fdsa"
+                  FRSPARMSCIRCUITRemoteDlci = "23asdf"
+                  FRSPARMSCIRCUITIngressCIR = "0sadf"
+                  FRSPARMSCIRCUITIngressBc = "0asdf"
+                  FRSPARMSCIRCUITIngressBe = "0sdf"
+                  FRSPARMSCIRCUITIngressTrafficMode = "unicastasd"
                   FRSPARMSCIRCUITIngressService = "nonRealTime"
                   FRSPARMSCIRCUITIngressFadGsmMode = "signaling"
                   FRSPARMSCIRCUITLoopMode = "noLoop"
